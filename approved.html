@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Leaves</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Approved Leaves</h1>
+        <p>Employee leave requests that have been approved</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="insert.html">Insert Leave</a>
+            <a href="list.html">List Leaves</a>
+            <a href="rejected.html">Rejected Leaves</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Approved Leave Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Leave Type</th>
+                    <th>Number of Days</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="approvedTable">
+                <tr><td colspan="7">Loading approved leaves...</td></tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>Leave Management System &copy; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

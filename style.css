@@ -1,0 +1,475 @@
+
+/* General page styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f5f3ff;
+    color: #292344;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #4b2e83, #7855b5);
+    color: white;
+    padding: 25px 6%;
+    box-shadow: 0 4px 12px rgba(40, 25, 75, 0.15);
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    color: #eee6ff;
+    font-size: 15px;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+nav a.active {
+    background-color: white;
+    color: #56358e;
+}
+
+/* Main content */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+    min-height: 55vh;
+}
+
+h2 {
+    color: #4b2e83;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+/* Links and buttons */
+a {
+    color: #6543a5;
+}
+
+.button,
+button {
+    display: inline-block;
+    background-color: #6543a5;
+    color: white;
+    border: none;
+    padding: 10px 17px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.button:hover,
+button:hover {
+    background-color: #432570;
+    transform: translateY(-1px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(55, 40, 90, 0.08);
+}
+
+thead {
+    background-color: #56358e;
+    color: white;
+}
+
+th,
+td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee8f7;
+}
+
+th {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+td {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+tbody tr:hover {
+    background-color: #f7f3ff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table action links and buttons */
+td a {
+    display: inline-block;
+    margin: 3px 8px 3px 0;
+    font-weight: 600;
+}
+
+td button {
+    margin: 3px;
+    background-color: #b83d55;
+}
+
+td button:hover {
+    background-color: #8e243b;
+}
+
+/* Forms */
+form {
+    max-width: 650px;
+    background-color: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(55, 40, 90, 0.08);
+}
+
+form label {
+    display: block;
+    margin: 15px 0 6px;
+    font-weight: 600;
+    color: #40335f;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d8d0e8;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 15px;
+    background-color: #fff;
+    color: #292344;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #7855b5;
+    box-shadow: 0 0 0 3px rgba(120, 85, 181, 0.13);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+form button {
+    margin-top: 22px;
+    margin-right: 10px;
+}
+
+form a {
+    display: inline-block;
+    margin-top: 22px;
+    margin-left: 5px;
+}
+
+/* Daily leave search */
+#dateForm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+#dateForm label {
+    margin-top: 0;
+}
+
+#dateForm input {
+    min-width: 220px;
+}
+
+/* Messages */
+#resultMessage {
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 22px;
+    margin-top: 40px;
+    background-color: #e9e2f7;
+    color: #51436f;
+}
+
+/* Mobile-friendly layout */
+@media (max-width: 768px) {
+    header {
+        padding: 22px 5%;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    main {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    nav {
+        gap: 8px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
+
+header nav {
+    background: transparent;
+    padding: 15px 0 0;
+}
+
+body > nav {
+    background-color: #eee8ff;
+    padding: 15px 6%;
+}
+
+nav a {
+    color: #56358e;
+    background-color: white;
+    padding: 10px 22px;
+    margin-right: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: #56358e;
+    color: white;
+}
+
+/* ===== HOME PAGE DESIGN ===== */
+
+.home-page {
+    min-height: 100vh;
+    background: #f4f0ff;
+    color: #292344;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Purple heading section */
+.home-header {
+    background: #56358e;
+    color: white;
+    text-align: center;
+    padding: 30px 20px 32px;
+    box-shadow: 0 4px 12px rgba(40, 25, 75, 0.15);
+}
+
+.home-header .header-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 8px;
+}
+
+.home-header .header-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.home-header h1 {
+    font-size: 30px;
+    margin: 0 0 5px;
+    color: white;
+}
+
+.home-header p {
+    color: #eee6ff;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Cards layout */
+.home-main {
+    width: 90%;
+    max-width: 900px;
+    margin: 35px auto;
+    min-height: 50vh;
+}
+
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* Individual cards */
+.home-card {
+    min-height: 155px;
+    background: #ffffff;
+    border: 1px solid #eee8f7;
+    border-radius: 13px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #56358e;
+    box-shadow: 0 4px 14px rgba(55, 40, 90, 0.06);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
+}
+
+.home-card svg {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+    color: #6543a5;
+}
+
+.home-card h3 {
+    font-size: 17px;
+    color: #292344;
+    margin: 0 0 5px;
+}
+
+.home-card p {
+    font-size: 13px;
+    color: #71638a;
+    margin: 0;
+}
+
+.home-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(55, 40, 90, 0.13);
+    background: #fcfaff;
+    border-color: #d8c9f5;
+}
+
+.home-card:focus-visible {
+    outline: 3px solid #9b7bd1;
+    outline-offset: 3px;
+}
+
+/* Delete card icon */
+.home-card.delete-card svg {
+    color: #b83d55;
+}
+
+/* Footer */
+.home-footer {
+    text-align: center;
+    padding: 22px 15px;
+    margin-top: 30px;
+    background: #e9e2f7;
+    color: #51436f;
+    font-size: 13px;
+}
+
+.home-footer p {
+    margin: 0;
+}
+
+/* Small screens */
+@media (max-width: 550px) {
+    .home-header {
+        padding: 25px 15px;
+    }
+
+    .home-header h1 {
+        font-size: 24px;
+    }
+
+    .home-main {
+        width: 92%;
+        margin: 25px auto;
+    }
+
+    .home-cards {
+        gap: 12px;
+    }
+
+    .home-card {
+        min-height: 145px;
+        padding: 16px 8px;
+    }
+
+    .home-card h3 {
+        font-size: 15px;
+    }
+
+    .home-card p {
+        font-size: 12px;
+    }
+}
+
+/* Five home cards */
+.home-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-card:nth-child(4) svg {
+    color: #299764;
+}
+
+.home-card:nth-child(5) svg {
+    color: #c34256;
+}

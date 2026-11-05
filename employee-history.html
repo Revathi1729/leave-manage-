@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Leave Management System</h1>
+    <p>Employee Leave History</p>
+</header>
+
+<main class="container">
+    <h2>View Your Leave History</h2>
+
+    <label>Select Employee ID:</label>
+    <select id="employee_id">
+        <option value="">Select Employee ID</option>
+    </select>
+
+    <button class="btn" onclick="loadHistory()">View History</button>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Leave ID</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Days</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="historyTable">
+                <tr>
+                    <td colspan="7">Select an employee ID.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+fetch("/employees")
+    .then(response => response.json())
+    .then(data => {
+        const select = document.getElementById("employee_id");
+
+        data.forEach(emp => {
+            const id = emp["employee id"];
+            select.add(new Option(id, id));
+        });
+    });
+
+function loadHistory() {
+    const id = document.getElementById("employee_id").value;
+    const table = document.getElementById("historyTable");
+
+    if (!id) {
+        alert("Please select an Employee ID");
+        return;
+    }
+
+    fetch(`/employee-history/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            table.innerHTML = "";
+
+            if (data.length === 0) {
+                table.innerHTML =
+                    '<tr><td colspan="7">No leave history found.</td></tr>';
+                return;
+            }
+
+            data.forEach(leave => {
+                const start = leave["start date"]
+                    ? new Date(leave["start date"]).toLocaleDateString("en-IN", {
+                        timeZone: "Asia/Kolkata"
+                    })
+                    : "-";
+
+                const end = leave["end date"]
+                    ? new Date(leave["end date"]).toLocaleDateString("en-IN", {
+                        timeZone: "Asia/Kolkata"
+                    })
+                    : "-";
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${leave.leave_id}</td>
+                        <td>${leave["leave type"]}</td>
+                        <td>${start}</td>
+                        <td>${end}</td>
+                        <td>${leave["number of days"]}</td>
+                        <td>${leave.description}</td>
+                        <td>${leave.status || "Pending"}</td>
+                    </tr>
+                `;
+            });
+        })
+       .catch(error => {
+    console.error("History loading error:", error);
+    alert("Unable to load leave history: " + error.message);
+});
+}
+</script>
+
+</body>
+</html>

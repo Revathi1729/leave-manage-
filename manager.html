@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Leave Management System</h1>
+    <p>Manager Dashboard</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="insert.html">Apply Leave</a>
+    <a href="list.html">List Leaves</a>
+    <a href="manager.html">Manager</a>
+</nav>
+
+<main class="container">
+    <h2>Pending Leave Applications</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Leave ID</th>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="managerTable">
+            <tr>
+                <td colspan="9">Loading requests...</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>Leave Management System &copy; 2026</p>
+</footer>
+
+<script>
+
+function loadPendingLeaves() {
+
+    fetch("/leaves")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Unable to fetch leave records");
+            }
+            return response.json();
+        })
+        .then(leaves => {
+
+            const table = document.getElementById("managerTable");
+
+            const pending = leaves.filter(
+                leave => (leave.status || "Pending").toLowerCase() === "pending"
+            );
+
+            table.innerHTML = "";
+
+            if (pending.length === 0) {
+                table.innerHTML =
+                    '<tr><td colspan="9">No pending applications.</td></tr>';
+                return;
+            }
+
+            pending.forEach(leave => {
+
+                const row = document.createElement("tr");
+
+                const startDate = leave["start date"]
+                    ? new Date(leave["start date"]).toLocaleDateString("en-IN", {
+                        timeZone: "Asia/Kolkata"
+                    })
+                    : "";
+
+                const endDate = leave["end date"]
+                    ? new Date(leave["end date"]).toLocaleDateString("en-IN", {
+                        timeZone: "Asia/Kolkata"
+                    })
+                    : "";
+
+                row.innerHTML = `
+                    <td>${leave.leave_id}</td>
+                    <td>${leave["employee id"]}</td>
+                    <td>${leave.name}</td>
+                    <td>${leave["leave type"]}</td>
+                    <td>${startDate}</td>
+                    <td>${endDate}</td>
+                    <td>${leave["number of days"]}</td>
+                    <td>${leave.description}</td>
+                    <td>
+                        <button onclick="updateStatus(${leave.leave_id}, 'Approved')">
+                            Approve
+                        </button>
+
+                        <button onclick="updateStatus(${leave.leave_id}, 'Rejected')">
+                            Reject
+                        </button>
+                        <button onclick="location.href='edit.html?id=${leave.leave_id}'">
+                            Edit
+                        </button>
+                    </td>
+                `;
+
+                table.appendChild(row);
+
+            });
+
+        })
+        .catch(error => {
+            console.error(error);
+
+            document.getElementById("managerTable").innerHTML =
+                '<tr><td colspan="9">Unable to load requests.</td></tr>';
+        });
+}
+
+
+function updateStatus(id, status) {
+
+    fetch(`/leaves/status/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: status })
+    })
+
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Unable to update status");
+        }
+
+        alert("Leave " + status + " successfully!");
+
+        loadPendingLeaves();
+    })
+
+    .catch(error => {
+        alert(error.message);
+    });
+
+}
+
+loadPendingLeaves();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Leave List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Leave Management System</h1>
+        <p>Daily Employee Leave List</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="insert.html">Apply Leave</a>
+        <a href="list.html" class="active">Daily Leave List</a>
+        <a href="approved.html">Approved Leaves</a>
+        <a href="rejected.html">Rejected Leaves</a>
+    </nav>
+
+    <main class="container">
+
+        <div class="page-heading">
+            <div>
+                <h2>Employees on Leave</h2>
+                <p>Select a date to view employees who are on leave.</p>
+            </div>
+        </div>
+
+        <section class="search-section">
+            <form id="dateForm">
+                <label for="leaveDate">Select Date:</label>
+
+                <input
+                    type="date"
+                    id="leaveDate"
+                    name="leaveDate"
+                    required
+                >
+
+                <button type="submit" class="btn">
+                    Search
+                </button>
+            </form>
+        </section>
+
+        <section class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Leave Type</th>
+                        <th>Number of Days</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dailyLeaveTable">
+                    <tr>
+                        <td colspan="6">
+                            Select a date to view employee leave records.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <p id="resultMessage"></p>
+
+    </main>
+
+    <footer>
+        <p>Leave Management System &copy; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
